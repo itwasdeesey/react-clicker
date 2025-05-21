@@ -1,0 +1,290 @@
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Значення за замовчуванням або з базового скіна */
+  --primary-color: #4ecca3;
+  --secondary-color: #1a1a2e;
+  --tertiary-color: #16213e;
+  --text-color: #fff;
+  --resource-background: rgba(255, 255, 255, 0.1);
+  --resource-text-color: #fff;
+  --duiktcoin-color: #ffd700;
+  --prestige-color: #ff6b6b;
+  --button-color: #4ecca3;
+  --button-text-color: #1a1a2e;
+  --button-hover-color: #3db389;
+  --button-border-color: #4ecca3;
+}
+
+/* Стилі для різних скінів, які перевизначають змінні */
+.app.golden-click-skin {
+  --primary-color: #ffd700;
+  --secondary-color: #2c3e50;
+  --tertiary-color: #34495e;
+  --text-color: #ecf0f1;
+  --resource-background: rgba(255, 215, 0, 0.1);
+  --resource-text-color: #ecf0f1;
+  --duiktcoin-color: #f1c40f;
+  --prestige-color: #e74c3c;
+  --button-color: #f39c12;
+  --button-text-color: #2c3e50;
+  --button-hover-color: #e67e22;
+  --button-border-color: #f39c12;
+}
+
+.app.neon-click-skin {
+  --primary-color: #9b59b6;
+  --secondary-color: #341f97;
+  --tertiary-color: #5f27cd;
+  --text-color: #ecf0f1;
+  --resource-background: rgba(155, 89, 182, 0.1);
+  --resource-text-color: #ecf0f1;
+  --duiktcoin-color: #00cec9;
+  --prestige-color: #d63031;
+  --button-color: #8e44ad;
+  --button-text-color: #ecf0f1;
+  --button-hover-color: #9b59b6;
+  --button-border-color: #8e44ad;
+}
+
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(78, 204, 163, 0.1) 0%, transparent 70%); /* Можливо, змінити колір градієнта */
+    pointer-events: none;
+  }
+
+  .app-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 800px; /* Збільшив max-width для розміщення двох колонок */
+
+    .logos {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+
+      .logo {
+        height: 5em;
+        padding: 0;
+        will-change: filter;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 0 0.8em rgba(78, 204, 163, 0.5));
+
+        &:hover {
+          transform: translateY(-8px);
+          filter: drop-shadow(0 0 1.5em rgba(78, 204, 163, 0.7));
+        }
+      }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+      text-shadow: 0 0 10px rgba(78, 204, 163, 0.3);
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .resources {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
+
+      .credits, .duiktcoins, .prestige {
+        background: var(--resource-background);
+        padding: 0.8rem 1.5rem;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--resource-background);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        color: var(--resource-text-color);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+      }
+
+      .duiktcoins {
+        color: var(--duiktcoin-color);
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+      }
+
+      .prestige {
+        color: var(--prestige-color);
+        text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+      }
+    }
+  }
+
+  .game-container {
+    width: 100%;
+    max-width: 800px; /* Збільшив max-width */
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .click-button {
+      background: linear-gradient(135deg, var(--button-color) 0%, var(--button-hover-color) 100%);
+      color: var(--button-text-color);
+      border: 3px solid var(--button-border-color);
+      padding: 1.5rem 3rem;
+      font-size: 1.5rem;
+      border-radius: 16px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      font-weight: bold;
+      box-shadow: 0 8px 16px rgba(78, 204, 163, 0.3);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      width: auto;
+      min-width: 200px;
+
+      &:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(78, 204, 163, 0.4);
+        border-color: var(--button-hover-color);
+      }
+
+      &:active {
+        transform: translateY(1px) scale(0.98);
+      }
+    }
+
+    .sections-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1rem;
+      width: 100%;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 0;
+
+      > div {
+        flex: 1 1 250px;
+        max-width: 300px;
+        min-width: 250px;
+      }
+    }
+
+    .statistics {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--text-color);
+      text-align: center;
+      padding: 0.8rem 1.5rem;
+      background: var(--resource-background);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--resource-background);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .prestige-button {
+      background: linear-gradient(135deg, var(--prestige-color) 0%, var(--prestige-color) 100%);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 12px rgba(255, 107, 107, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+
+      &:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(255, 107, 107, 0.4);
+        filter: brightness(0.9);
+      }
+
+      &:active {
+        transform: translateY(1px) scale(0.98);
+      }
+    }
+
+    .reset-button {
+      background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+      color: #1a1a2e;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 6px rgba(255, 193, 7, 0.3);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(255, 193, 7, 0.4);
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+    }
+  }
+}
+
+/* Додамо медіа-запит для дуже вузьких екранів */
+@media (max-width: 600px) {
+  .app .game-container .sections-container {
+    flex-direction: column;
+    align-items: center;
+
+    > div {
+      width: 95%;
+      max-width: none;
+    }
+  }
+} 
